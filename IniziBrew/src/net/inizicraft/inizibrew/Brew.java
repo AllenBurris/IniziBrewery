@@ -1,5 +1,12 @@
 package net.inizicraft.inizibrew;
 
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
 public class Brew {
 	
 	static String name;
@@ -27,8 +34,20 @@ public class Brew {
 	public boolean getCanDistill() { return canDistill;}
 	public int getMaxRuns() { return maxRuns;}
 	
-	public void giveBrew() {
-		//ItemStack item = new ItemStack(Material.GRASS,64);
-		//player.getInventory().addItem(item);
+	public static void giveBrew(String name, Player sender) {
+		name.toUpperCase();
+		ItemStack stack = new ItemStack(Material.POTION);
+		PotionMeta meta = (PotionMeta)stack.getItemMeta();
+
+		meta.addCustomEffect(new PotionEffect(
+		        PotionEffectType.CONFUSION,        //Effect
+		        300,                            //Duration in ticks
+		        0),                             //Amplifier (Potion level is this + 1)
+		    true                                //True = show particles, false = hide particles
+		);
+		meta.addCustomEffect(new PotionEffect(PotionEffectType.HUNGER,300,0),true);
+		meta.setDisplayName("Sir's Brew");
+		stack.setItemMeta(meta);
+		((Player)sender).getInventory().addItem(stack);
 	}
 }
