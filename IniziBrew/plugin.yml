@@ -1,0 +1,14 @@
+name: 'IniziBrew'
+main: net.inizicraft.inizibrew.IniziBrew
+description: 'brewery for inizi'
+version: 0.0.1
+api-version: 1.13
+load: STARTUP
+author: [StarBound]
+commands:
+  brewtest:
+    description: a test command
+    usage: /<command>
+  ib:
+    description: IniziBrew
+    usage: /<command>
