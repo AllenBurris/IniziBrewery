@@ -40,7 +40,7 @@ public class Brew {
 		PotionMeta meta = (PotionMeta)stack.getItemMeta();
 
 		meta.addCustomEffect(new PotionEffect(
-		        PotionEffectType.CONFUSION,        //Effect
+		        PotionEffectType.CONFUSION,     //Effect
 		        300,                            //Duration in ticks
 		        0),                             //Amplifier (Potion level is this + 1)
 		    true                                //True = show particles, false = hide particles
