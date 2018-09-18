@@ -1,0 +1,27 @@
+player-name: Star
+
+player:
+  time:
+    join: 6:00pm
+    
+recipes:
+  0:
+    name: Example
+    ingredients:
+      - SUGAR_CANE/5
+      - 264/1
+      - INK_SACK/20
+      - BEDROCK/1
+    cooktime: 3
+    distillruns: 2
+    distilltime: 60
+    barrelwoodtype: 4
+    age: 11
+    color: DARK_RED
+    difficulty: 3
+    alcohol: 23
+    effects:
+      - FIRE_RESISTANCE/20
+      - HEAL/1
+      - WEAKNESS/2-3/50-60
+      - POISONX/1-0/20-0

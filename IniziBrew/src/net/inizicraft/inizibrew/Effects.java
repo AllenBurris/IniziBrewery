@@ -67,6 +67,7 @@ public class Effects {
 			if(effect.equalsIgnoreCase("wither"))
 				return PotionEffectType.WITHER;
 			
+			System.out.println("No Potion type was provided");
 			return null;
 		}
 }
