@@ -2,7 +2,7 @@ package net.inizicraft.inizibrew;
 
 import org.bukkit.potion.PotionEffectType;
 
-public class PotionEffects {
+public class Effects {
 
 		static PotionEffectType getEffect(String effect) {
 			

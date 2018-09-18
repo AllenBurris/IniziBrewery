@@ -44,7 +44,7 @@ public class Brew {
 		        0),                             //Amplifier (Potion level is this + 1)
 		    true                                //True = show particles, false = hide particles
 		);
-		meta.addCustomEffect(new PotionEffect(PotionEffects.getEffect(name) ,300,0),false);
+		meta.addCustomEffect(new PotionEffect(Effects.getEffect(name) ,300,0),false);
 		meta.setDisplayName("Sir's Brew");
 		stack.setItemMeta(meta);
 		sender.getInventory().addItem(stack);
