@@ -35,7 +35,6 @@ public class Brew {
 	public int getMaxRuns() { return maxRuns;}
 	
 	public static void giveBrew(String name, Player sender) {
-		name.toUpperCase();
 		ItemStack stack = new ItemStack(Material.POTION);
 		PotionMeta meta = (PotionMeta)stack.getItemMeta();
 
@@ -45,9 +44,9 @@ public class Brew {
 		        0),                             //Amplifier (Potion level is this + 1)
 		    true                                //True = show particles, false = hide particles
 		);
-		meta.addCustomEffect(new PotionEffect(PotionEffectType.HUNGER,300,0),true);
+		meta.addCustomEffect(new PotionEffect(PotionEffects.getEffect(name) ,300,0),false);
 		meta.setDisplayName("Sir's Brew");
 		stack.setItemMeta(meta);
-		((Player)sender).getInventory().addItem(stack);
+		sender.getInventory().addItem(stack);
 	}
 }
