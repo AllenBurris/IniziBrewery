@@ -47,7 +47,11 @@ public class Brew {
 		
 	}
 	
-	void readIngredients(String rawIng, int number) {
+	void readIngredients() {
+		
+	}
+	
+/*	void readIngredients(String rawIng, int number) {
 		int found = 0;
 		String running = "";
 		
@@ -64,11 +68,12 @@ public class Brew {
 	
 	ItemStack getItemStack(String string) {
 		
-		ItemStack stack = new ItemStack(Material.string);
+		Material mat = new Material(string);
+		ItemStack stack = new ItemStack(Material.GRASS);
 		
 		return null;
 	}
-	
+	*/
 	PotionMeta addBrewEffect(ItemStack item, String effect, int duration, int effectStr, boolean showParticles) {
 		
 		PotionMeta meta = (PotionMeta) item.getItemMeta();
