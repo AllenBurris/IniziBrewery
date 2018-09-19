@@ -17,7 +17,7 @@ public class Brew {
 	static int currentAge;
 	static boolean canDistill = false;
 	static int maxRuns;
-	static String ingredients;
+	static ItemStack[] ingredients;
 	static String barrelType;
 	
 	
@@ -34,16 +34,39 @@ public class Brew {
 	Brew(FileConfiguration brewConfig, int recipeNum) {
 		
 		brewNum = recipeNum;
-		name = brewConfig.getString(recipeNum + "name");
-		ingredients = brewConfig.getString(recipeNum + "ingredients");
-		cookTime = brewConfig.getInt(recipeNum + "cooktime");
-		maxRuns = brewConfig.getInt(recipeNum + "distillruns");
+		name = brewConfig.getString(recipeNum + ".name");
+		readIngredients(brewConfig.getString(recipeNum + ".ingredients"), recipeNum);
+		//ingredients = brewConfig.getString(recipeNum + "ingredients");
+		cookTime = brewConfig.getInt(recipeNum + ".cooktime");
+		maxRuns = brewConfig.getInt(recipeNum + ".distillruns");
 		if(maxRuns != 0) canDistill = true;
-		barrelType = brewConfig.getString(recipeNum + "barrelwoodtype");
-		maxAge = brewConfig.getInt(recipeNum + "age");
+		barrelType = brewConfig.getString(recipeNum + ".barrelwoodtype");
+		maxAge = brewConfig.getInt(recipeNum + ".age");
 		
 		
 		
+	}
+	
+	void readIngredients(String rawIng, int number) {
+		int found = 0;
+		String running = "";
+		
+		while(found > rawIng.length()) {
+			while(rawIng.charAt(found) != ',') {
+				++found;
+				running+=rawIng.charAt(found-1);
+				
+			}
+			found = found+2;
+			ingredients[number] = getItemStack(running);
+		}
+	}
+	
+	ItemStack getItemStack(String string) {
+		
+		ItemStack stack = new ItemStack(Material.string);
+		
+		return null;
 	}
 	
 	PotionMeta addBrewEffect(ItemStack item, String effect, int duration, int effectStr, boolean showParticles) {
