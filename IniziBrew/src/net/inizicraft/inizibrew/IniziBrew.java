@@ -79,7 +79,7 @@ public class IniziBrew extends JavaPlugin{
 			
 			if(args[0].equalsIgnoreCase("give")) {
 				if(sender instanceof Player ) {
-					Brew.giveBrew(args[1], ((Player) sender));
+					Brew.giveBrew(((String) args[1]), ((Player) sender));
 				}
 				else
 					sender.sendMessage("Only a player may execute this command.");
