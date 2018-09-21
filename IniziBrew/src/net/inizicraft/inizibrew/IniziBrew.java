@@ -9,6 +9,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,12 +17,15 @@ public class IniziBrew extends JavaPlugin{
 	
 	private File ConfigFile;
 	private FileConfiguration brewConfig;
+	Brew[] brewArray;
 
 	@Override
 	public void onEnable() {
 		createConfig();
 		
-		System.out.println("Inizibrew Enabled");
+		for(int i=0; i <= (brewConfig.getInt("totalrecipes")-1); i++) {
+			brewArray[i] =  new Brew(brewConfig, String.valueOf(i));
+		}
 		
 		getServer().getPluginManager().registerEvents(new Listeners(), this);
 		
@@ -37,6 +41,7 @@ public class IniziBrew extends JavaPlugin{
 			}
 			
 		}, 0, 20); */
+		System.out.println("Inizibrew Enabled");
 	}
 	
 	public void onDisable() {
@@ -79,7 +84,7 @@ public class IniziBrew extends JavaPlugin{
 			
 			if(args[0].equalsIgnoreCase("give")) {
 				if(sender instanceof Player ) {
-					Brew.giveBrew(((String) args[1]), ((Player) sender));
+					((HumanEntity) sender).getInventory().addItem(brewArray[Integer.valueOf(args[1])].getBrew());
 				}
 				else
 					sender.sendMessage("Only a player may execute this command.");
@@ -87,6 +92,7 @@ public class IniziBrew extends JavaPlugin{
 			
 			if(args[0].equalsIgnoreCase("get")) {
 				sender.sendMessage(this.getBrewConfig().getString("recipes.0.ingredients"));
+				sender.sendMessage(this.getBrewConfig().getString("recipes.0.effects"));
 			}
 
 		}

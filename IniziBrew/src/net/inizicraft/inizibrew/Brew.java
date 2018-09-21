@@ -4,40 +4,29 @@ import java.util.Scanner;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 
 public class Brew {
 	
-	private static String brewNum;
-	private static String name;
-	private static int cookTime;
-	private static boolean canAge = false;
-	private static int maxAge;
-	private static int currentAge;
-	private static boolean canDistill = false;
-	private static int maxRuns;
-	private static ItemStack[] ingredients;
-	private static String barrelType;
-	private static int difficulty;
-	private static int alcohol;
-	private static ItemStack theBrew = new ItemStack(Material.POTION);
-	
-	
-	Brew(String brewName, int brewAge, int distillRuns) {
-		name = brewName;
-		maxAge = brewAge;
-		maxRuns = distillRuns;
-		
-		if(maxAge > 0) canAge = true;
-		if(distillRuns > 0) canDistill = true;
-		
-	}
+	private String brewNum;
+	private String name;
+	private int cookTime;
+	private boolean canAge = false;
+	private int maxAge;
+	private int currentAge;
+	private boolean canDistill = false;
+	private int maxRuns;
+	private ItemStack[] ingredients;
+	private String barrelType;
+	private int difficulty;
+	private int alcohol;
+	private static ItemStack theBrew;
 	
 	Brew(FileConfiguration brewConfig, String recipeNum) {
 		
+		theBrew = new ItemStack(Material.POTION);
 		brewNum = recipeNum;
 		name = brewConfig.getString("recipes." + recipeNum + ".name");
 		
@@ -68,6 +57,7 @@ public class Brew {
 			theBrew.setItemMeta(meta);
 		}
 		parseEffect.close();
+		
 	}
 	
 /*	void readIngredients(String rawIng, int number) {
@@ -105,7 +95,7 @@ public class Brew {
 	public boolean getCanDistill() { return canDistill;}
 	public int getMaxRuns() { return maxRuns; }
 	
-	public static void giveBrew(String recipeNum, Player sender) {
-		sender.getInventory().addItem(theBrew);
+	public ItemStack getBrew() {
+		return theBrew;
 	}
 }
